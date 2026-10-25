@@ -1,0 +1,42 @@
+server:
+  port: 9084
+spring:
+  application:
+    name: order-service
+  datasource:
+    # ============ LOCAL DEVELOPMENT (IntelliJ IDEA) ============
+    # Uncomment below for running locally on your machine
+    url: jdbc:postgresql://localhost:5436/orderdb
+    username: orders
+    password: orders
+    
+    # ============ DOCKER DEPLOYMENT ============
+    # Comment below and uncomment above for local development
+#    url: jdbc:postgresql://order-db:5432/orderdb
+#    username: orders
+#    password: orders
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    # ============ LOCAL DEVELOPMENT (IntelliJ IDEA) ============
+    host: localhost
+    port: 15673
+    
+    # ============ DOCKER DEPLOYMENT ============
+#    host: rabbitmq
+#    port: 15673
+app:
+  jwt:
+    secret: ${JWT_SECRET:TXlfU21hcnRDYW1wdXNfU2VjcmV0X0tleTEyMzQ1Njc4OTAxMjM0NTY3OA==}
+  marketplace:
+    # ============ LOCAL DEVELOPMENT (IntelliJ IDEA) ============
+    url: http://localhost:9083
+    
+    # ============ DOCKER DEPLOYMENT ============
+    # Uncomment below for Docker deployment
+#    url: http://marketplace-service:8083
+

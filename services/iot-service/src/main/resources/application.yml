@@ -1,0 +1,9 @@
+server:
+  port: 9087
+spring:
+  application:
+    name: iot-service
+app:
+  jwt:
+    secret: ${JWT_SECRET:TXlfU21hcnRDYW1wdXNfU2VjcmV0X0tleTEyMzQ1Njc4OTAxMjM0NTY3OA==}
+

@@ -1,0 +1,48 @@
+server:
+  port: 9081
+spring:
+  application:
+    name: auth-service
+  datasource:
+    # ============ LOCAL DEVELOPMENT (IntelliJ IDEA) ============
+    # Uncomment below for running locally on your machine
+    url: jdbc:postgresql://localhost:5433/authdb
+    username: auth
+    password: auth
+    
+    # ============ DOCKER DEPLOYMENT (Local Docker) ============
+    # Comment below and uncomment above for local development
+#    url: jdbc:postgresql://auth-db:5432/authdb
+#    username: auth
+#    password: auth
+    
+    # ============ CLOUD DEPLOYMENT (Liara/Production) ============
+    # Uses environment variables - این برای Liara است
+#    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://auth-db:5432/authdb}
+#    username: ${SPRING_DATASOURCE_USERNAME:auth}
+#    password: ${SPRING_DATASOURCE_PASSWORD:auth}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  rabbitmq:
+    # ============ LOCAL DEVELOPMENT (IntelliJ IDEA) ============
+    host: localhost
+    port: 15673
+    
+    # ============ DOCKER DEPLOYMENT (Local Docker) ============
+#    host: rabbitmq
+#    port: 15673
+    
+    # ============ CLOUD DEPLOYMENT (Liara/Production) ============
+#    host: ${SPRING_RABBITMQ_HOST:rabbitmq}
+#    port: ${SPRING_RABBITMQ_PORT:5672}
+#    username: ${SPRING_RABBITMQ_USERNAME:guest}
+#    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:TXlfU21hcnRDYW1wdXNfU2VjcmV0X0tleTEyMzQ1Njc4OTAxMjM0NTY3OA==}
+
